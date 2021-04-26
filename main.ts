@@ -28,6 +28,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, oth
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
+    info.changeScoreBy(1)
     info.changeLifeBy(-1)
 })
 let fire_ball: Sprite = null
@@ -55,8 +56,9 @@ scene.setBackgroundColor(7)
 extinguisher.setPosition(11, 50)
 controller.moveSprite(extinguisher)
 info.setLife(300)
+extinguisher.setStayInScreen(true)
 // on every 2 second, creat fire
-game.onUpdateInterval(500, function () {
+game.onUpdateInterval(50, function () {
     fire_ball = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . 4 4 4 4 . . . . . . 
